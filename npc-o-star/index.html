@@ -424,17 +424,18 @@ button{font-family:inherit;cursor:pointer}
 .col .vuota img{display:block;height:260px;margin:0 auto 20px;filter:drop-shadow(7px 7px 0 #000)}
 /* riga di un giocatore: posizione, miniatura, nome, barra e risultato complessivo */
 .carta{position:relative;height:var(--h);display:flex;align-items:center;background:rgba(255,255,255,.07);border:4px solid #000;border-left:12px solid var(--c);cursor:pointer;min-width:0}
-.carta .pos{flex:none;width:calc(var(--h)*.66);text-align:center;font-size:calc(var(--h)*.34);line-height:1;padding-top:.12em;color:var(--c);-webkit-text-stroke:4px #000;paint-order:stroke fill}
+.carta .pos{flex:none;width:calc(var(--h)*.52);text-align:center;font-size:calc(var(--h)*.34);line-height:1;padding-top:.12em;color:var(--c);-webkit-text-stroke:4px #000;paint-order:stroke fill}
 .carta .cf{position:relative;flex:none;width:calc(var(--h)*.9);height:100%}
 .carta .ci{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:0 14px}
 .carta .nm1{display:block;white-space:nowrap;overflow:hidden;line-height:1;color:#fff;padding-top:.15em}
 .carta .cnome{display:block;white-space:nowrap;overflow:hidden;line-height:1;padding:.12em 4px 0 2px;color:var(--beige);-webkit-text-stroke:4px #000;paint-order:stroke fill;text-shadow:3px 3px 0 #000}
 .carta .cb{flex:none;width:calc(var(--h)*1.25);display:flex;flex-direction:column;gap:4px}
-.carta .mini{position:relative;height:max(14px,calc(var(--h)*.17));background:rgba(255,255,255,.12);border:3px solid #000}
+.carta .ci .mini{margin:8px 4px 0 2px;flex:none}
+.carta .mini{position:relative;height:max(12px,calc(var(--h)*.12));background:rgba(255,255,255,.12);border:3px solid #000}
 .carta .mini i{position:absolute;left:0;top:0;bottom:0;width:var(--p,0%);background:var(--star)}
 .col.npc .carta .mini{background:var(--npc)}
 .carta .ml{font-size:max(14px,calc(var(--h)*.13));line-height:1;color:var(--beige)}
-.carta .pc{flex:none;width:calc(var(--h)*1.35);text-align:right;padding:.1em 14px 0 0;white-space:nowrap;overflow:hidden;color:var(--c);--st:7px;--sh:4px}
+.carta .pc{flex:none;width:calc(var(--h)*1.3);text-align:right;padding:.1em 14px 0 0;white-space:nowrap;overflow:hidden;color:var(--c);--st:7px;--sh:4px}
 .col.npc .carta .pc{color:#C9D2E0;--ombra:var(--npc-2)}
 .carta .tag{position:absolute;right:0;top:0;background:var(--regia);color:#000;font-size:15px;line-height:1;padding:5px 7px 2px}
 .carta .modifica{position:absolute;right:6px;bottom:6px;z-index:3;width:38px;height:38px;border:3px solid #000;background:var(--beige);font-size:20px;line-height:1;padding:4px 0 0;opacity:0;pointer-events:none;transition:opacity .2s}
@@ -1429,13 +1430,12 @@ const Render = (() => {
     let dentro;
     if (piccola) {
       const st = f.inCorso ? 'VOTO IN CORSO' : f.nessuno ? 'NESSUN VOTO' : f.esito === 'p' ? 'IN BILICO · ' + percX(f.x) : 'DA GIUDICARE';
-      dentro = `<div class="cf"><div class="quadro"></div></div><div class="ci"><div class="cnome">${esc(g.nome)}</div><div class="stato${f.esito === 'p' ? ' p' : ''}">${st}</div></div>`;
+      dentro = `<div class="cf"><div class="quadro"></div></div><div class="ci"><div class="cnome">${esc(g.nome.indexOf(" ") > 0 ? g.nome.slice(g.nome.indexOf(" ") + 1) : g.nome)}</div><div class="stato${f.esito === 'p' ? ' p' : ''}">${st}</div></div>`;
     } else {
-      // solo il risultato complessivo: nome di battesimo piccolo, cognome grande, barra e percentuale STAR
+      // solo il risultato complessivo: nome di battesimo piccolo, cognome grande con la barra sotto, percentuale STAR a destra
       const sp = g.nome.indexOf(' '), n1 = sp > 0 ? g.nome.slice(0, sp) : '', n2 = sp > 0 ? g.nome.slice(sp + 1) : g.nome;
       dentro = `<span class="pos">${due(pos)}</span><div class="cf"><div class="quadro"></div></div>` +
-        `<div class="ci"><span class="nm1">${esc(n1)}</span><span class="cnome">${esc(n2)}</span></div>` +
-        `<div class="cb"><div class="mini" style="--p:${f.x == null ? 0 : f.x.toFixed(1)}%"><i></i></div><span class="ml">STAR</span></div>` +
+        `<div class="ci"><span class="nm1">${esc(n1)}</span><span class="cnome">${esc(n2)}</span><div class="mini" style="--p:${f.x == null ? 0 : f.x.toFixed(1)}%"><i></i></div></div>` +
         `<span class="pc tsc">${f.x == null ? '–' : percX(f.x)}</span>`;
     }
     k.innerHTML = dentro + (f.man ? '<div class="tag">REGIA</div>' : '') + `<button class="modifica" title="Correggi l'esito">✎</button>`;
