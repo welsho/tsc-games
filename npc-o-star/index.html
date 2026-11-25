@@ -83,7 +83,7 @@
 #v-logo     {left:1478px;top:12px;  height:92px}
 #vnome      {left:914px; top:90px;  width:732px;--fs:118px}
 #vriga      {left:922px; top:228px; width:958px;--fs:30px}
-#v-tempo    {left:1660px;top:22px;  width:220px; height:138px}
+#v-tempo    {left:1660px;top:22px;  width:220px; height:166px}
 #v-chat     {left:920px; top:274px; width:620px; height:330px}
 #v-ris      {left:1556px;top:274px; width:324px; height:330px}
 #vris       {--fs:116px}
@@ -227,8 +227,9 @@ button{font-family:inherit;cursor:pointer}
 #vnome{display:block;white-space:nowrap;overflow:hidden;padding:12px 0 2px 6px}
 #vriga{display:block;white-space:nowrap;overflow:hidden;line-height:1;padding-top:4px}
 /* tempo */
-#v-tempo .sec{position:absolute;left:20px;top:48px;font-size:70px;--st:10px;--sh:6px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:4px}
-#v-tempo .barra{position:absolute;left:20px;right:20px;bottom:18px;height:12px;background:rgba(255,255,255,.14)}
+#v-tempo .tit{left:0;right:0;top:20px;text-align:center;font-size:24px}
+#v-tempo .sec{position:absolute;left:0;right:0;top:48px;text-align:center;font-size:60px;--st:10px;--sh:6px;font-variant-numeric:tabular-nums;white-space:nowrap;padding-top:4px}
+#v-tempo .barra{position:absolute;left:22px;right:22px;bottom:20px;height:12px;border:2px solid #000;background:rgba(255,255,255,.14)}
 #v-tempo .barra i{display:block;height:100%;width:100%;background:var(--sole);transition:width .3s linear}
 #voto[data-stato=aperto] #v-tempo .tit{color:#7dffa3}
 #voto[data-stato=pausa] #v-tempo .sec,#voto[data-stato=attesa] #v-tempo .sec{opacity:.7}
@@ -236,27 +237,27 @@ button{font-family:inherit;cursor:pointer}
 #v-tempo.poco .barra i{background:#ff4040}
 /* la chat */
 #v-chat .tot{position:absolute;right:26px;top:24px;font-size:26px;line-height:1;color:var(--beige);white-space:nowrap}
-#v-chat .feed{position:absolute;left:24px;right:24px;top:62px;height:34px;display:flex;gap:6px;overflow:hidden}
-.fv{flex:none;max-width:170px;background:#000;color:var(--beige);font-size:17px;line-height:1;padding:9px 8px 4px;border:2px solid var(--c,#fff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:fvEntra .3s}
+#v-chat .feed{position:absolute;left:24px;right:24px;top:64px;height:36px;display:flex;gap:8px;overflow:hidden}
+.fv{flex:none;max-width:136px;background:#000;color:var(--beige);font-size:19px;line-height:1;padding:9px 9px 4px;border:3px solid var(--c,#fff);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:fvEntra .3s}
 .fv b{font-weight:normal;color:var(--c);margin-right:6px}
 .fv.s{--c:var(--star)}
 .fv.n{--c:#C9D2E0}
 @keyframes fvEntra{0%{transform:translateY(-12px);opacity:0}}
-#v-chat .lato{position:absolute;left:24px;right:24px;height:66px;display:flex;align-items:center;gap:12px}
-#v-chat .lato.star{top:106px}
-#v-chat .lato.npc{top:180px}
-#v-chat .lato .ico{width:54px;height:54px}
-#v-chat .et{width:104px;font-size:46px;line-height:1;padding-top:6px;white-space:nowrap}
+#v-chat .lato{position:absolute;left:24px;right:24px;height:64px;display:flex;align-items:center;gap:12px}
+#v-chat .lato.star{top:112px}
+#v-chat .lato.npc{top:186px}
+#v-chat .lato .ico{width:50px;height:50px}
+#v-chat .et{width:100px;font-size:46px;line-height:1;padding-top:6px;white-space:nowrap}
 #v-chat .star .et{color:var(--star);-webkit-text-stroke:6px #000;paint-order:stroke fill;text-shadow:4px 4px 0 var(--arancio)}
 #v-chat .npc .et{color:#C9D2E0;-webkit-text-stroke:6px #000;paint-order:stroke fill;text-shadow:4px 4px 0 var(--npc-2)}
-#v-chat .bar{flex:1;min-width:0;height:42px;background:rgba(255,255,255,.08);border:4px solid #000;position:relative}
+#v-chat .bar{flex:1;min-width:0;height:46px;background:rgba(255,255,255,.08);border:4px solid #000;position:relative}
 #v-chat .bar i{position:absolute;left:0;top:0;bottom:0;transition:width .45s cubic-bezier(.3,1.4,.5,1)}
 #v-chat .star .bar i{width:var(--pstar,0%);background:var(--star)}
 #v-chat .npc .bar i{width:var(--pnpc,0%);background:var(--npc)}
-#v-chat .pc{width:132px;text-align:right;font-size:58px;--st:9px;--sh:5px;white-space:nowrap;font-variant-numeric:tabular-nums;padding-top:6px}
+#v-chat .pc{width:140px;text-align:right;font-size:58px;--st:9px;--sh:5px;white-space:nowrap;font-variant-numeric:tabular-nums;padding-top:6px}
 #v-chat .star .pc{color:var(--star)}
 #v-chat .npc .pc{color:#C9D2E0;--ombra:var(--npc-2)}
-#v-chat .vt{width:78px;text-align:right;font-size:20px;line-height:1;color:#fff;white-space:nowrap}
+#v-chat .vt{position:absolute;right:166px;top:50%;transform:translateY(-38%);font-size:22px;line-height:1;color:#fff;-webkit-text-stroke:5px #000;paint-order:stroke fill;white-space:nowrap;pointer-events:none}
 #v-comandi{position:absolute;left:24px;right:24px;bottom:22px}
 #v-comandi .chiave{font-size:24px}
 #v-comandi .pl{font-size:21px;-webkit-text-stroke:4px #000}
